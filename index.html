@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Event Countdown</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('bg.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .view-container {
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            position: absolute;
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            transform: translateY(-30px);
+            pointer-events: none;
+        }
+
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0);
+        }
+
+        #countdown-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #countdown-view h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .timer-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .time-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 80px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 3rem;
+            font-weight: bold;
+            display: inline-block;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .time-box p {
+            margin: 5px 0 0 0;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.8); }
+            100% { transform: scale(1); }
+        }
+
+        .tick {
+            animation: pop 0.3s ease-out;
+        }
+
+        #event-view {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        #event-view h1 {
+            font-size: 3rem;
+            color: #ffd700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        #event-view p {
+            font-size: 1.2rem;
+            color: #ffffff;
+            line-height: 1.6;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .action-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #ffd700;
+            color: #003366;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+        }
+
+        .action-button:hover {
+            background-color: #ffea75;
+            transform: translateY(-2px);
+        }
+
+        #dashboard-layout {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: row;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #8e44ad;
+            display: flex;
+            flex-direction: column;
+            padding-top: 30px;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .sidebar-logo {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 30px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .sidebar-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-link:hover {
+            background-color: rgba(0,0,0,0.15);
+        }
+
+        .dropdown-container {
+            display: none;
+            flex-direction: column;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .dropdown-item {
+            color: #dddddd;
+            text-decoration: none;
+            padding: 12px 25px 12px 45px;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            color: #ffffff;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 50px;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .page-section {
+            display: none;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title-image {
+            display: block;
+            margin: 0 auto 30px auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+            pointer-events: none;
+        }
+
+        .img-pad-fix {
+            transform: scale(2.4);
+            margin-top: -80px;
+            margin-bottom: -80px;
+        }
+
+        .page-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .card-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .kw-cyan { font-weight: bold; color: #34e8eb; }
+        .kw-green { font-weight: bold; color: #2ecc71; }
+        .kw-yellow { font-weight: bold; color: #f1c40f; }
+        .kw-blue { font-weight: bold; color: #3498db; }
+        .kw-violet { font-weight: bold; color: #9b59b6; }
+        .kw-purple { font-weight: bold; color: #8e44ad; }
+    </style>
+</head>
+<body>
+
+    <div id="countdown-view" class="view-container">
+        <h1>Seranova Starts In...</h1>
+        <div class="timer-container">
+            <div class="time-box">
+                <span id="days">00</span>
+                <p>Days</p>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <p>Hours</p>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <p>Minutes</p>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <p>Seconds</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="event-view" class="view-container">
+        <h1>All Aboard!</h1>
+        <p>Seranova!</p>
+        <button id="enter-site-btn" class="action-button">View Event</button>
+    </div>
+
+    <div id="dashboard-layout">
+        <div class="sidebar">
+            <div class="sidebar-logo"><img src="https://i.imgur.com/T3Abmsc.jpeg" alt="Logo" class="sidebar-logo"></div>
+            
+            <a class="sidebar-link" onclick="switchPage('home-page')">HOME</a>
+            
+            <div class="sidebar-link" onclick="toggleAboutMenu()">
+                <span>ABOUT US</span>
+                <span id="about-arrow">▼</span>
+            </div>
+            
+            <div id="about-dropdown" class="dropdown-container">
+                <a class="dropdown-item" onclick="switchPage('seranova-page')">SERANOVA</a>
+                <a class="dropdown-item" onclick="switchPage('bazkom-page')">BAZKOM</a>
+                <a class="dropdown-item" onclick="switchPage('carasel-page')">CARASEL</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <div id="home-page" class="page-section active">
+                <h1 style="text-align: center; margin-bottom: 40px;">Welcome!</h1>
+                <div class="card-grid">
+                    <div class="info-card">
+                        <h2><img src="https://i.imgur.com/CJBBNuw.png" alt="Seranova" class="page-title-image"></h2>
+                        <button class="action-button" style="padding: 10px 20px; font-size: 1rem;" onclick="switchPage('seranova-page')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="https://i.imgur.com/Fl9MjeG.png" alt="Bazkom" class="page-title-image img-pad-fix"></h2>
+                        <button class="action-button" style="padding: 10px 20px; font-size: 1rem;" onclick="switchPage('bazkom-page')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="https://i.imgur.com/e2yVjVz.png" alt="Carasel" class="page-title-image img-pad-fix"></h2>
+                        <button class="action-button" style="padding: 10px 20px; font-size: 1rem;" onclick="switchPage('carasel-page')">See More</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="seranova-page" class="page-section">
+                <img src="https://i.imgur.com/CJBBNuw.png" alt="Seranova" class="page-title-image">
+                <div class="page-text">
+                    <span class="kw-violet">BAZKOM CARASEL 2026</span> hadir dengan nama <span class="kw-purple">"SERANOVA"</span> yaitu <span class="kw-purple">"A Serenade to the Dream Within"</span> yang berarti senandung dari jiwa-jiwa yang bermimpi, melambangkan perjalanan penuh harapan menuju ruang di dalam diri, tempat cahaya dan bayangan berpadu dalam harmoni, dan setiap mimpi menemukan sinarnya tanpa batas. Dalam penggambarannya, kami menyiratkan <span class="kw-purple">elemen-elemen mimpi</span>.
+                </div>
+                <div class="page-text">
+                    <span class="kw-purple">SERANOVA - A Serenade to the Dream Within</span> - Di balik kesunyian malam, ada ruang yang tak pernah benar benar tidur. Sebuah alam bawah sadar, tempat, rasa, harapan, dan imaji berharmoni. Di sanalah <span class="kw-purple">SERANOVA</span> lahir, senandung dari jiwa-jiwa yang bermimpi dan mencari cahaya di antara gelapnya ruang batin. Setiap manusia menyimpan puing-puing cahaya dan harapan di dalam dirinya, fragmen kecil yang menunggu untuk ditemukan kembali.
+                </div>
+                <div class="page-text">
+                    Melalui <span class="kw-purple">BAZKOM CARASEL SERANOVA 2026</span>, kami menghadirkan perjalanan menuju ruang di mana setiap mimpi, betapapun kecil, dapat bersinar tanpa batas.
+                </div>
+            </div>
+
+            <div id="bazkom-page" class="page-section">
+                <img src="https://i.imgur.com/Fl9MjeG.png" alt="Bazkom" class="page-title-image img-pad-fix">
+                <div class="page-text">
+                    <span class="kw-blue">BAZKOM (Bazaar dan Kompetisi)</span> sejumlah kompetisi di berbagai bidang, termasuk seni, agama, pengetahuan dan olahraga. <span class="kw-blue">BAZKOM</span> berfungsi sebagai ajang bagi para remaja untuk menyalurkan hobi dan mengembangkan skill maupun bakat yang dimiliki.
+                </div>
+                <div class="page-text">
+                    Kegiatan ini menjadi peluang berharga guna melatih kemampuan peserta didik <span class="kw-green">SMAN 68 Jakarta</span>, seperti kemampuan berorganisasi dan mengelola sebuah acara, sekaligus memberikan penghargaan terhadap kreativitas dan inovasi anak muda yang semakin beragam dan menarik.
+                </div>
+            </div>
+
+            <div id="carasel-page" class="page-section">
+                <img src="https://i.imgur.com/e2yVjVz.png" alt="Carasel" class="page-title-image img-pad-fix">
+                <div class="page-text">
+                    <span class="kw-blue">CARASEL (Cipta Karya Seni Enam Lapan)</span> merupakan kegiatan pentas seni turunan dari tahun ke tahun sekaligus menjadi titik puncak dari kegiatan <span class="kw-blue">BAZKOM (Bazaar dan Kompetisi)</span>. 
+                </div>
+                <div class="page-text">
+                    <span class="kw-blue">CARASEL</span> memiliki tujuan yaitu mengembangkan dan melihatkan hasil karya seni dan budaya yang ada di Indonesia terkhususkan di <span class="kw-green">SMAN 68 Jakarta</span>. <span class="kw-blue">CARASEL</span> tidak hanya mengekspresikan dalam seni namun <span class="kw-green">OSIS/MPK SMAN 68 Jakarta</span> pastinya mengundang beberapa artis yang setiap tahunnya berbeda.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const eventDate = new Date().getTime() + 5000; 
+        let prevDays = -1, prevHours = -1, prevMinutes = -1, prevSeconds = -1;
+
+        function updateTimerBox(id, newValue, oldValue) {
+            if (newValue !== oldValue) {
+                const element = document.getElementById(id);
+                element.innerHTML = newValue < 10 ? "0" + newValue : newValue;
+                element.classList.remove('tick');
+                void element.offsetWidth; 
+                element.classList.add('tick');
+            }
+            return newValue;
+        }
+
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance >= 0) {
+                const days = Math.floor(distance / 86400000);
+                const hours = Math.floor((distance % 86400000) / 3600000);
+                const minutes = Math.floor((distance % 3600000) / 60000);
+                const seconds = Math.floor((distance % 60000) / 1000);
+
+                prevDays = updateTimerBox("days", days, prevDays);
+                prevHours = updateTimerBox("hours", hours, prevHours);
+                prevMinutes = updateTimerBox("minutes", minutes, prevMinutes);
+                prevSeconds = updateTimerBox("seconds", seconds, prevSeconds);
+            }
+
+            if (distance < 0) {
+                clearInterval(timerInterval); 
+                const countdownView = document.getElementById("countdown-view");
+                const eventView = document.getElementById("event-view");
+
+                countdownView.classList.add("fade-out");
+                setTimeout(() => {
+                    countdownView.style.display = "none";
+                    eventView.style.display = "block";
+                    setTimeout(() => {
+                        eventView.classList.add("fade-in");
+                    }, 50);
+                }, 800);
+            }
+        }, 1000);
+
+        document.getElementById("enter-site-btn").addEventListener("click", function() {
+            document.getElementById("event-view").style.display = "none";
+            document.body.style.display = "block";
+            const dashboard = document.getElementById("dashboard-layout");
+            dashboard.style.display = "flex";
+            dashboard.classList.add("fade-in");
+        });
+
+        function toggleAboutMenu() {
+            const dropdown = document.getElementById("about-dropdown");
+            const arrow = document.getElementById("about-arrow");
+            if (dropdown.style.display === "flex") {
+                dropdown.style.display = "none";
+                arrow.innerHTML = "▼";
+            } else {
+                dropdown.style.display = "flex";
+                arrow.innerHTML = "▲";
+            }
+        }
+
+        function switchPage(pageId) {
+            const sections = document.querySelectorAll(".page-section");
+            sections.forEach(section => {
+                section.classList.remove("active");
+            });
+            document.getElementById(pageId).classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
