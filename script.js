@@ -11,7 +11,12 @@ const countdownInterval = setInterval(() => {
     document.getElementById("minutes").textContent = "00";
     document.getElementById("seconds").textContent = "00";
     document.getElementById("countdown-view").style.display = "none";
-    document.getElementById("event-view").style.display = "flex";
+    const eventView = document.getElementById("event-view");
+    eventView.style.display = "flex";
+    setTimeout(() => {
+      eventView.style.opacity = "1";
+      eventView.style.transform = "translateY(0)";
+    }, 10);
   } else {
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -31,12 +36,29 @@ document.getElementById("enter-site-btn")?.addEventListener("click", () => {
   document.getElementById("dashboard-layout").style.display = "flex";
 });
 
-// Switch page function
+document.getElementById("hamburger-btn")?.addEventListener("click", () => {
+    document.getElementById("sidebar").classList.toggle("open");
+});
+
 function switchPage(pageId) {
-  document.querySelectorAll(".page-section").forEach(section => {
-    section.classList.remove("active");
-  });
-  document.getElementById(pageId).classList.add("active");
+    document.querySelectorAll(".page-section").forEach(section => {
+        section.classList.remove("active");
+    });
+    document.getElementById(pageId).classList.add("active");
+    
+    // Close dropdown if open
+    const dropdown = document.getElementById("about-dropdown");
+    if (dropdown && dropdown.classList.contains("show")) {
+        dropdown.classList.remove("show");
+        const arrow = document.getElementById("about-arrow");
+        if (arrow) arrow.style.transform = "rotate(0deg)";
+    }
+    
+    // Close sidebar on mobile
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar) {
+        sidebar.classList.remove("open");
+    }
 }
 
 // Toggle about menu

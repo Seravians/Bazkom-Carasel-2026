@@ -40,16 +40,15 @@
     </div>
 
     <div id="dashboard-layout">
-        <div class="sidebar">
+        <button id="hamburger-btn" class="hamburger-btn">&#9776;</button>
+
+        <div id="sidebar" class="sidebar">
             <div class="sidebar-logo"><img src="Logo.png" alt="Logo" class="sidebar-logo"></div>
-
             <a class="sidebar-link" onclick="switchPage('home-page')">HOME</a>
-
             <div class="sidebar-link" onclick="toggleAboutMenu()">
                 <span>ABOUT US</span>
                 <span id="about-arrow">▼</span>
             </div>
-
             <div id="about-dropdown" class="dropdown-container">
                 <a class="dropdown-item" onclick="switchPage('seranova-page')">SERANOVA</a>
                 <a class="dropdown-item" onclick="switchPage('bazkom-page')">BAZKOM</a>
@@ -63,25 +62,22 @@
                 <h1 style="text-align: center; margin-bottom: 40px;">Welcome!</h1>
                 <div class="card-grid">
                     <div class="info-card">
-                        <h2><img src="Seranova.png" width="200" alt="Seranova" class="page-title-image"></h2>
-                        <button class="action-button" style="padding: 10px 20px; font-size: 1rem;"
-                            onclick="switchPage('seranova-page')">See More</button>
+                        <h2><img src="Seranova.png" alt="Seranova" class="page-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('seranova-page')">See More</button>
                     </div>
                     <div class="info-card">
-                        <h2><img src="Bazkom.png" width="200" alt="Bazkom" class="page-title-image"></h2>
-                        <button class="action-button" style="padding: 10px 20px; font-size: 1rem;"
-                            onclick="switchPage('bazkom-page')">See More</button>
+                        <h2><img src="Bazkom.png" alt="Bazkom" class="page-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('bazkom-page')">See More</button>
                     </div>
                     <div class="info-card">
-                        <h2><img src="Carasel.png" width="200" alt="Carasel" class="page-title-image img-pad-fix"></h2>
-                        <button class="action-button" style="padding: 10px 20px; font-size: 1rem;"
-                            onclick="switchPage('carasel-page')">See More</button>
+                        <h2><img src="Carasel.png" alt="Carasel" class="page-title-image img-pad-fix"></h2>
+                        <button class="action-button sm" onclick="switchPage('carasel-page')">See More</button>
                     </div>
                 </div>
             </div>
 
             <div id="seranova-page" class="page-section">
-                <img src="Seranova.png" width="200" alt="Seranova" class="page-title-image">
+                <img src="Seranova.png" alt="Seranova" class="page-title-image">
                 <div class="page-text">
                     <span class="kw-violet">BAZKOM CARASEL 2026</span> hadir dengan nama <span
                         class="kw-purple">"SERANOVA"</span> yaitu <span class="kw-purple">"A Serenade to the Dream
@@ -105,7 +101,7 @@
             </div>
 
             <div id="bazkom-page" class="page-section">
-                <img src="Bazkom.png" width="200" alt="Bazkom" class="page-title-image">
+                <img src="Bazkom.png" alt="Bazkom" class="page-title-image">
                 <div class="page-text">
                     <span class="kw-blue">BAZKOM (Bazaar dan Kompetisi)</span> sejumlah kompetisi di berbagai bidang,
                     termasuk seni, agama, pengetahuan dan olahraga. <span class="kw-blue">BAZKOM</span> berfungsi
@@ -121,7 +117,7 @@
             </div>
 
             <div id="carasel-page" class="page-section">
-                <img src="Carasel.png" width="200" alt="Carasel" class="page-title-image img-pad-fix">
+                <img src="Carasel.png" alt="Carasel" class="page-title-image img-pad-fix">
                 <div class="page-text">
                     <span class="kw-blue">CARASEL (Cipta Karya Seni Enam Lapan)</span> merupakan kegiatan pentas seni
                     turunan dari tahun ke tahun sekaligus menjadi titik puncak dari kegiatan <span

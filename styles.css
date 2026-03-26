@@ -111,13 +111,13 @@ body {
     justify-content: center;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 50px;
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    max-width: 600px;
+    max-width: 500px;
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
@@ -362,11 +362,8 @@ body {
     font-weight: bold;
     color: #8e44ad;
 }
-/* =========================
-   📱 MOBILE RESPONSIVENESS
-   ========================= */
 
-/* Tablets & below */
+
 @media (max-width: 1024px) {
     .main-content {
         padding: 30px;
@@ -383,16 +380,98 @@ body {
 }
 
 
-/* Phones */
 @media (max-width: 768px) {
-
     body {
-        overflow-y: auto; /* allow scrolling on mobile */
+        overflow-y: auto;
         align-items: flex-start;
-        padding: 20px 10px;
+        padding: 0;
     }
 
-    /* Countdown */
+    #dashboard-layout {
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -270px;
+        width: 250px;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 80px;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .sidebar-logo {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+        margin: 0 auto 20px auto;
+    }
+
+    .sidebar-link {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .main-content {
+        padding: 80px 15px 20px 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .page-section {
+        padding: 25px 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-card {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .page-text {
+        font-size: 0.95rem;
+    }
+
+    .action-button {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+
+    .page-title-image {
+        max-height: 180px;
+    }
+
+    .img-pad-fix {
+        transform: scale(1.5);
+        margin-top: -40px;
+        margin-bottom: -40px;
+    }
+
     .timer-container {
         flex-direction: column;
         gap: 15px;
@@ -402,6 +481,7 @@ body {
         min-width: unset;
         width: 100%;
         padding: 15px;
+        box-sizing: border-box;
     }
 
     .time-box span {
@@ -412,10 +492,10 @@ body {
         font-size: 1.8rem;
     }
 
-    /* Event card */
     #event-view {
         padding: 25px;
         width: 100%;
+        box-sizing: border-box;
     }
 
     #event-view h1 {
@@ -424,121 +504,5 @@ body {
 
     #event-view p {
         font-size: 1rem;
-    }
-
-    /* Dashboard layout */
-    #dashboard-layout {
-        flex-direction: row;
-    }
-
-    /* Sidebar becomes top bar */
-    .sidebar {
-        width: 100%;
-        height: auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 10px;
-    }
-
-    .sidebar-logo {
-        width: 50px;
-        height: 50px;
-        font-size: 1rem;
-        margin: 5px;
-    }
-
-    .sidebar-link {
-        padding: 10px;
-        font-size: 0.9rem;
-        border: none;
-    }
-
-    .dropdown-container {
-        width: 100%;
-    }
-
-    .hamburger-btn {
-        display: block;
-    }
-
-    .sidebar {
-        position: fixed;
-        left: -250px;
-        top: 0;
-        height: 100vh;
-        width: 250px;
-    }
-
-    .sidebar.open {
-        left: 0;
-    }
-
-    #dashboard-layout {
-        position: relative;
-    }
-
-    /* Main content */
-    .main-content {
-        padding: 15px;
-    }
-
-    .page-section {
-        padding: 20px;
-    }
-
-    /* Cards stack */
-    .card-grid {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .info-card {
-        width: 100%;
-        padding: 20px;
-    }
-
-    /* Text scaling */
-    .page-text {
-        font-size: 0.95rem;
-    }
-
-    /* Buttons */
-    .action-button {
-        width: 100%;
-        padding: 14px;
-        font-size: 1rem;
-    }
-
-    /* Images */
-    .page-title-image {
-        max-height: 180px;
-    }
-
-    .img-pad-fix {
-        transform: scale(1.5);
-        margin-top: -40px;
-        margin-bottom: -40px;
-    }
-}
-
-
-/* Small phones */
-@media (max-width: 480px) {
-
-    #countdown-view h1 {
-        font-size: 1.5rem;
-    }
-
-    .time-box span {
-        font-size: 1.8rem;
-    }
-
-    #event-view h1 {
-        font-size: 1.6rem;
-    }
-
-    .page-text {
-        font-size: 0.9rem;
     }
 }
