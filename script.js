@@ -17,7 +17,7 @@ const els = {
 
 // --- Countdown Logic ---
 // Set exact date and time
-const targetDate = new Date("March 31, 2026 12:30:00");
+const targetDate = new Date("April 1, 2026 10:00:00");
 
 // Convert target date into milliseconds for timer
 const eventDate = targetDate.getTime();
