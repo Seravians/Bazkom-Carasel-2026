@@ -529,6 +529,8 @@ body {
 
     #event-view {
         width: 100%;
+        box-sizing: border-box;
+        height: auto;
     }
 
     #event-view h1 {
