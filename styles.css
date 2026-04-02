@@ -377,6 +377,10 @@ body {
     flex: 1;
     min-width: 200px;
     max-width: calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Color Keywords */
