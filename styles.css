@@ -376,6 +376,7 @@ body {
     text-align: center;
     flex: 1;
     min-width: 200px;
+    max-width: calc(50% - 10px);
 }
 
 /* Color Keywords */
@@ -480,6 +481,7 @@ body {
 
     .info-card {
         width: 100%;
+        max-width: 100%;
         padding: 20px;
         box-sizing: border-box;
         flex: none;
