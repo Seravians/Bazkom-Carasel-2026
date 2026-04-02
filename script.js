@@ -16,7 +16,11 @@ const els = {
 };
 
 // --- Countdown Logic ---
-const eventDate = Date.now() + 5000;
+// Set exact date and time
+const targetDate = new Date("April 1, 2026 10:00:00");
+
+// Convert target date into milliseconds for timer
+const eventDate = targetDate.getTime();
 
 const countdownInterval = setInterval(() => {
   const distance = eventDate - Date.now();
