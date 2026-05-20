@@ -1,0 +1,687 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('assets/bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+#dashboard-layout {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.main-content {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition: filter 0.3s cubic-bezier(.4, 0, .2, 1);
+    box-sizing: border-box;
+}
+
+.page-section {
+    display: none;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.page-section.active {
+    display: block;
+    animation: fadeIn 0.6s ease;
+}
+
+#sidebar-open-btn {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 1100;
+    background: rgba(0, 139, 139, 0.95);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: #FFFFFF;
+    font-size: 2rem;
+    display: none;
+}
+
+#school-logo-container {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+}
+
+#school-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -225px;
+    height: 100vh;
+    width: 225px;
+    background-color: #008B8B;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: left 0.3s cubic-bezier(.4, 0, .2, 1);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logo-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: block;
+    margin: 20px auto;
+}
+
+.sidebar #btn {
+    position: absolute;
+    color: white;
+    top: .4rem;
+    left: 50%;
+    font-size: 1.2rem;
+    line-height: 50px;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.sidebar.active #btn {
+    left: 90%;
+}
+
+.sidebar .top .logo {
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    pointer-events: none;
+    opacity: 0;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.active .top .logo {
+    opacity: 1;
+    transition: opacity 0.3s ease 0.2s;
+}
+
+.sidebar p {
+    opacity: 0;
+}
+
+.sidebar.active p {
+    opacity: 1;
+    transition: opacity 0.3s ease 0.4s;
+}
+
+.sidebar ul li {
+    position: relative;
+    list-style-type: none;
+    height: 50px;
+    width: 90%;
+    margin: 0.8rem auto;
+    line-height: 50px;
+}
+
+.sidebar ul li a {
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 0.8rem;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffd700;
+}
+
+.sidebar ul li a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+}
+
+.sidebar .nav-item {
+    opacity: 0;
+}
+
+.sidebar.active .nav-item {
+    opacity: 1;
+    transition: opacity 0.3s ease 0.5s;
+}
+
+.sidebar ul li .tooltip {
+    position: absolute;
+    left: 125px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.3);
+    border-radius: .6rem;
+    padding: .4rem 1.2rem;
+    line-height: 1.8rem;
+    z-index: 20;
+    opacity: 0;
+}
+
+.sidebar ul li:hover .tooltip {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar.active ul li .tooltip {
+    display: none;
+}
+
+.countdown-title {
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    margin: 0 0 20px 0;
+    font-weight: 600;
+}
+
+.timer-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 15px 10px;
+    border-radius: 10px;
+    min-width: 75px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    perspective: 400px;
+}
+
+.time-box span {
+    font-size: 2.2rem;
+    font-weight: bold;
+    display: inline-block;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.time-box span.flip {
+    animation: digit-flip 0.5s ease-in-out;
+}
+
+@keyframes digit-flip {
+    0% {
+        transform: rotateX(0deg);
+    }
+
+    50% {
+        transform: rotateX(-90deg);
+    }
+
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+.countdown-wrapper.expired {
+    display: none;
+}
+
+.time-box p {
+    margin: 5px 0 0 0;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.action-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: #ffd700;
+    color: #003366;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.action-button:hover {
+    background-color: #ffea75;
+    transform: translateY(-2px);
+}
+
+.action-button.sm {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 0;
+}
+
+.welcome-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-title-image,
+.kompetisi-title-image {
+    display: block;
+    margin: 0 auto 30px auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+    pointer-events: none;
+}
+
+.page-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.card-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+    max-width: calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.info-card h2:has(.page-title-image) {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 20px 0;
+    width: 100%;
+}
+
+.info-card h2 .page-title-image {
+    margin: 0;
+}
+
+.bookmark-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    z-index: 5;
+    padding: 0;
+}
+
+.bookmark-toggle:hover {
+    background: rgba(255, 215, 0, 0.25);
+    transform: scale(1.1);
+    color: #ffd700;
+}
+
+.bookmark-toggle.active {
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.2);
+    border-color: rgba(255, 215, 0, 0.6);
+}
+
+.bookmark-toggle.active:hover {
+    background: rgba(255, 215, 0, 0.35);
+}
+
+.bookmark-toggle i {
+    pointer-events: none;
+}
+
+.bookmark-toggle.pop {
+    animation: pop 0.3s ease-out;
+}
+
+.bookmarks-empty {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.bookmarks-empty i {
+    font-size: 4rem;
+    opacity: 0.4;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.bookmarks-empty p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+}
+
+.bookmarks-empty-hint {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.social-card {
+    cursor: default;
+}
+
+.social-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.social-name {
+    margin: 5px 0 8px 0;
+}
+
+.social-handle {
+    margin: 0;
+    opacity: 0.7;
+}
+
+.video-section {
+    margin-top: 30px;
+}
+
+.video-section-title {
+    margin-bottom: 15px;
+}
+
+.video-placeholder {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 60px 20px;
+}
+
+.video-placeholder i {
+    font-size: 5rem;
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.video-placeholder p {
+    margin: 0;
+    opacity: 0.6;
+}
+
+.kw-green {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+.kw-blue {
+    font-weight: bold;
+    color: #3498db;
+}
+
+.kw-violet {
+    font-weight: bold;
+    color: #9b59b6;
+}
+
+.kw-purple {
+    font-weight: bold;
+    color: #8e44ad;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+        color: #ffd700;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.tick {
+    animation: pop 0.3s ease-out;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 30px;
+    }
+
+    .page-section {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    #dashboard-layout {
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        padding-top: 80px;
+    }
+
+    .main-content {
+        padding: 80px 15px 20px 15px;
+    }
+
+    .page-section {
+        padding: 25px 15px;
+    }
+
+    .card-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        flex: none;
+    }
+
+    .info-card h2 {
+        margin: 0;
+    }
+
+    .page-text {
+        font-size: 0.95rem;
+    }
+
+    .action-button {
+        width: 100%;
+        padding: 14px;
+        box-sizing: border-box;
+    }
+
+    .page-title-image,
+    .kompetisi-title-image {
+        max-height: 180px;
+    }
+
+    .timer-container {
+        gap: 8px;
+        margin-bottom: 25px;
+    }
+
+    .time-box {
+        flex: 1;
+        min-width: 0;
+        padding: 12px 5px;
+    }
+
+    .time-box span {
+        font-size: 1.6rem;
+    }
+
+    .time-box p {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+
+    .countdown-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .bookmark-toggle {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        font-size: 1.1rem;
+    }
+
+    #school-logo-container {
+        top: 10px;
+        right: 12px;
+        padding: 4px 8px;
+        border-radius: 8px;
+    }
+
+    #school-logo {
+        height: 36px;
+    }
+
+    .main-content.sidebar-open {
+        filter: blur(2px);
+        pointer-events: none;
+    }
+
+    .social-icon {
+        font-size: 3rem;
+    }
+
+    .video-placeholder {
+        padding: 40px 15px;
+    }
+
+    .video-placeholder i {
+        font-size: 4rem;
+    }
+}

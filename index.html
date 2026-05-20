@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seranova</title>
+    <link rel="icon" href="assets/Logo.png" type="image/png">
+</head>
+
+<body>
+
+    <div id="dashboard-layout">
+        <button id="sidebar-open-btn" aria-label="Open sidebar">
+            <i class="bx bx-menu"></i>
+        </button>
+
+        <div id="school-logo-container">
+            <img src="assets/Logo68.png" alt="School Logo" id="school-logo" onerror="this.style.display='none'">
+        </div>
+
+        <div class="sidebar" id="sidebar">
+            <div class="top">
+                <i class="bx bx-menu" id="btn"></i>
+            </div>
+            <div class="logo-container">
+                <img src="assets/Logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+            </div>
+            <ul>
+                <li>
+                    <a href="#" onclick="switchPage('home-page')">
+                        <i class="bx bxs-grid-alt"></i>
+                        <span class="nav-item">Home</span>
+                    </a>
+                    <span class="tooltip">Home</span>
+                </li>
+                <li>
+                    <a href="#" onclick="switchPage('kompetisi-page')">
+                        <i class='bx bx-trophy'></i>
+                        <span class="nav-item">Kompetisi</span>
+                    </a>
+                    <span class="tooltip">Kompetisi</span>
+                </li>
+                <li>
+                    <a href="#" onclick="switchPage('bookmarks-page')">
+                        <i class='bx bx-star'></i>
+                        <span class="nav-item">Bookmarks</span>
+                    </a>
+                    <span class="tooltip">Bookmarks</span>
+                </li>
+                <li>
+                    <a href="#" onclick="switchPage('social-media-page')">
+                        <i class='bx bx-share-alt'></i>
+                        <span class="nav-item">Social Media</span>
+                    </a>
+                    <span class="tooltip">Social Media</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div id="home-page" class="page-section active">
+                <div class="countdown-wrapper">
+                    <h2 class="countdown-title">Registration Closes In...</h2>
+                    <div class="timer-container">
+                        <div class="time-box">
+                            <span class="days">00</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="hours">00</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="minutes">00</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="seconds">00</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="welcome-title">Hαi, Sҽɾαʋiαɳʂ!</h1>
+                <div class="card-grid">
+                    <div class="info-card seranova-card">
+                        <h2><img src="assets/Seranova.png" alt="Seranova" class="page-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('seranova-page')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/Bazkom.png" alt="Bazkom" class="page-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('bazkom-page')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/Carasel.png" alt="Carasel" class="page-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('carasel-page')">See More</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="kompetisi-page" class="page-section">
+                <div class="countdown-wrapper">
+                    <h2 class="countdown-title">Registration Closes In...</h2>
+                    <div class="timer-container">
+                        <div class="time-box">
+                            <span class="days">00</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="hours">00</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="minutes">00</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="seconds">00</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="welcome-title">Kompetisi</h1>
+                <div class="card-grid">
+                    <div class="info-card">
+                        <h2><img src="assets/ASCFrame.png" alt="Seranova" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-asc')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/BandFrame.png" alt="BAND" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-band')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/BasketPutraFrame.png" alt="BASKET PUTRA" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-basket-putra')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/BasketPutriFrame.png" alt="BASKET PUTRI" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-basket-putri')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/CCAFrame.png" alt="CCA" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-cca')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/CCIFrame.png" alt="CCI" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-cci')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/CheersLevel2Frame.png" alt="CHEERLEADER LEVEL 2" class="kompetisi-title-image">
+                        </h2>
+                        <button class="action-button sm" onclick="switchPage('comp-cheerleader-level-2')">See
+                            More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/CheersLevel4Frame.png" alt="CHEERLEADER LEVEL 4" class="kompetisi-title-image">
+                        </h2>
+                        <button class="action-button sm" onclick="switchPage('comp-cheerleader-level-4')">See
+                            More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/FutsalPutraFrame.png" alt="FUTSAL PUTRA" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-futsal-putra')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/FutsalPutriFrame.png" alt="FUTSAL PUTRI" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-futsal-putri')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/MLBBFrame.png" alt="MLBB" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-mlbb')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/RatohJaroeFrame.png" alt="RATOH JAROE" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-ratoh-jaroe')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/TariTradisionalFrame.png" alt="TARI TRADISIONAL" class="kompetisi-title-image">
+                        </h2>
+                        <button class="action-button sm" onclick="switchPage('comp-tari-tradisional')">See More</button>
+                    </div>
+                    <div class="info-card">
+                        <h2><img src="assets/VocalGroupFrame.png" alt="VOCAL GROUP" class="kompetisi-title-image"></h2>
+                        <button class="action-button sm" onclick="switchPage('comp-vocal-group')">See More</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="comp-asc" class="page-section">
+                <h1 class="welcome-title">ASEAN Simulation Conference</h1>
+                <h2><img src="assets/ASC.png" alt="ASC" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1SDF33RkuSKsHjodI27AGooHHEKvifsb9/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfS_nYeZI3xAY3OxJCPSFuyvUDfZidDlksVMgoUlfh6M3DE2A/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-band" class="page-section">
+                <h1 class="welcome-title">BAND</h1>
+                <h2><img src="assets/Band.png" alt="BAND" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1Urjrkh5aGCfdfyhEaD-XjuizdoUKmgQp/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeOJk37OBKxoX8pMeWQBWcmCP-PU8YJZfasgp-5xa7Vgz7jjA/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-basket-putra" class="page-section">
+                <h1 class="welcome-title">BASKET PUTRA</h1>
+                <h2><img src="assets/BasketPutra.png" alt="BASKET PUTRA" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1bWptG8EAj2lnbIL3_S16zN6pEX0ccmzu/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvPDJpSrOKcQfSschVoeMiplydqDOtHq8GJ7ATJLyzAqVcrg/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-basket-putri" class="page-section">
+                <h1 class="welcome-title">BASKET PUTRI</h1>
+                <h2><img src="assets/BasketPutri.png" alt="BASKET PUTRI" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1KiWAbcWjzRWmTQQBfI6H9YRRfl0ziTbG/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSen6bkiBqcVHMTirqSS00ZuTuYRQyfjJYEaTRACgbjhz3nsrw/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-cca" class="page-section">
+                <h1 class="welcome-title">CERDAS CERMAT ALKITAB</h1>
+                <h2><img src="assets/CCA.png" alt="CCA" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/13P2slGt1MfPxPJNyrg7ssZWhXjdc215Y/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScMxW5KF3KxCKy1Wwp4H5Prj0XSI9hPgQO-Jt25Fj9m0sd3LA/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-cci" class="page-section">
+                <h1 class="welcome-title">CERDAS CERMAT ISLAM</h1>
+                <h2><img src="assets/CCI.png" alt="CCI" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1BX3PGcZhTTxZrhPOYfpeBE2n4zBJxoy9/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdbk-x2-Hl0rGhF1j2GHU0nos0lD7FAPl9rZZ0c9IFeHK0C6A/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-cheerleader-level-2" class="page-section">
+                <h1 class="welcome-title">CHEERLEADER LEVEL 2</h1>
+                <h2><img src="assets/Cheers.png" alt="CHEERLEADER LEVEL 2" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/15H2VbIRrohPH7fwrrIQJPofFqPUikNS_/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5d8ws7pcnXZXADP8F1O8w7ouuavXPMaRc6MRPmzD453GtHw/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-cheerleader-level-4" class="page-section">
+                <h1 class="welcome-title">CHEERLEADER LEVEL 4</h1>
+                <h2><img src="assets/Cheers.png" alt="CHEERLEADER LEVEL 4" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/199HcgwWnak44PsstAI5vMxNZsuI38xV2/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScyirXls0Jz9aDrtRvoWm3wyOY2d3uATpKOp1CbnVrEEh8vAQ/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-futsal-putra" class="page-section">
+                <h1 class="welcome-title">FUTSAL PUTRA</h1>
+                <h2><img src="assets/FutsalPutra.png" alt="FUTSAL PUTRA" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1aBy8xTQhO5ZIbpC73djDJErQrAhn_9cN/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdz5qfUvdyZEvK5c3NzWVkzCa8yvOR8teTgT9VbBlx-r13RBg/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-futsal-putri" class="page-section">
+                <h1 class="welcome-title">FUTSAL PUTRI</h1>
+                <h2><img src="assets/FutsalPutri.png" alt="FUTSAL PUTRI" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/12oRi-6yfrddw91yWw0ojnyP_4hu9XRD5/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScQMppdHZdCksgYRaX2SCoWPtgkQkYp1nrakzyUM3jg38FBVg/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-mlbb" class="page-section">
+                <h1 class="welcome-title">MOBILE LEGENDS</h1>
+                <h2><img src="assets/MLBB.png" alt="MLBB" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1yQGC14LN7n4C3B_31HLZ4Xq0VIBI9y96/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeu6ksY_bIISilhNgt8DeCoqW1QvAck97wuG_ckyrFYFijRmw/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-ratoh-jaroe" class="page-section">
+                <h1 class="welcome-title">RATOH JAROE</h1>
+                <h2><img src="assets/RatohJaroe.png" alt="RATOH JAROE" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1KRzAEOzg-cHe2d8n8ov4KSwHOX1iyE7a/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd2YfCfNwhwPr0cIloQndhbNHE4RxlXqlp_0RgBlyRSMNusgg/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-tari-tradisional" class="page-section">
+                <h1 class="welcome-title">TARI TRADISIONAL</h1>
+                <h2><img src="assets/TariTradisional.png" alt="TARI TRADISIONAL" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1rV9doB9FkmzUnrvspaHfiL_eYrmh1oRu/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdrTtOx0frib1Yob1LweQtg86cfX46yz3eSTRIZa3pVIIgdvQ/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="comp-vocal-group" class="page-section">
+                <h1 class="welcome-title">VOCAL GROUP</h1>
+                <h2><img src="assets/VocalGroup.png" alt="VOCAL GROUP" class="page-title-image"></h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://drive.google.com/file/d/1mfhPf3VflSiXT0nEpYg5D0FR0F8BQzLu/view?usp=drivesdk"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Guidebook</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc7yloUbJnVXAoWdtvjHk3_JHt8YeoCQFHeRrajqz4xFvI8Cw/viewform?usp=preview"
+                        class="action-button sm" style="margin: 5px;" target="_blank">Sign Up Form</a>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="goBackFromComp()">Back</button>
+                </div>
+            </div>
+
+            <div id="seranova-page" class="page-section">
+                <img src="assets/Seranova.png" alt="Seranova" class="page-title-image">
+                <div class="page-text">
+                    <span class="kw-violet">BAZKOM CARASEL 2026</span> hadir dengan nama <span
+                        class="kw-purple">"SERANOVA"</span>
+                    yaitu <span class="kw-purple">"Senandung Rasa Nostra Pujangga"</span> yang berarti senandung dari
+                    jiwa-jiwa
+                    yang bermimpi, melambangkan perjalanan penuh harapan menuju ruang di dalam diri, tempat cahaya dan
+                    bayangan
+                    berpadu dalam harmoni, dan setiap mimpi menemukan sinarnya tanpa batas. Dalam penggambarannya, kami
+                    menyiratkan
+                    <span class="kw-purple">elemen-elemen mimpi</span>.
+                </div>
+                <div class="page-text">
+                    <span class="kw-purple">SERANOVA - A Serenade to the Dream Within</span> - Di balik kesunyian malam,
+                    ada ruang yang tak pernah benar benar tidur. Sebuah alam bawah sadar, tempat, rasa, harapan, dan
+                    imaji berharmoni. Di sanalah <span class="kw-purple">SERANOVA</span> lahir, senandung dari jiwa-jiwa
+                    yang bermimpi dan mencari cahaya di antara gelapnya ruang batin. Setiap manusia menyimpan
+                    puing-puing cahaya dan harapan di dalam dirinya, fragmen kecil yang menunggu untuk ditemukan
+                    kembali.
+                </div>
+                <div class="page-text">
+                    Melalui <span class="kw-purple">BAZKOM CARASEL SERANOVA 2026</span>, kami menghadirkan perjalanan
+                    menuju ruang di mana setiap mimpi, betapapun kecil, dapat bersinar tanpa batas.
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="switchPage('home-page')">Back</button>
+                </div>
+            </div>
+
+            <div id="bazkom-page" class="page-section">
+                <img src="assets/Bazkom.png" alt="Bazkom" class="page-title-image">
+                <div class="page-text">
+                    <span class="kw-blue">BAZKOM (Bazaar dan Kompetisi)</span> sejumlah kompetisi di berbagai bidang,
+                    termasuk seni, agama, pengetahuan dan olahraga. <span class="kw-blue">BAZKOM</span> berfungsi
+                    sebagai ajang bagi para remaja untuk menyalurkan hobi dan mengembangkan skill maupun bakat yang
+                    dimiliki.
+                </div>
+                <div class="page-text">
+                    Kegiatan ini menjadi peluang berharga guna melatih kemampuan peserta didik
+                    <span class="kw-green">SMAN 68 Jakarta</span>, seperti kemampuan berorganisasi
+                    dan mengelola sebuah acara, sekaligus memberikan penghargaan terhadap kreativitas
+                    dan inovasi anak muda yang semakin beragam dan menarik.
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="switchPage('home-page')">Back</button>
+                </div>
+            </div>
+
+            <div id="carasel-page" class="page-section">
+                <img src="assets/Carasel.png" alt="Carasel" class="page-title-image">
+                <div class="page-text">
+                    <span class="kw-blue">CARASEL (Cipta Karya Seni Enam Lapan)</span> merupakan kegiatan pentas seni
+                    turunan dari tahun ke tahun sekaligus menjadi titik puncak dari kegiatan
+                    <span class="kw-blue">BAZKOM (Bazaar dan Kompetisi)</span>.
+                </div>
+                <div class="page-text">
+                    <span class="kw-blue">CARASEL</span> memiliki tujuan yaitu mengembangkan dan melihatkan hasil karya
+                    seni dan budaya yang ada di Indonesia terkhususkan di <span class="kw-green">SMAN 68 Jakarta</span>.
+                    <span class="kw-blue">CARASEL</span> tidak hanya mengekspresikan dalam seni namun
+                    <span class="kw-green">OSIS/MPK SMAN 68 Jakarta</span> pastinya mengundang beberapa artis yang
+                    setiap tahunnya berbeda.
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="action-button sm" onclick="switchPage('home-page')">Back</button>
+                </div>
+            </div>
+
+            <div id="bookmarks-page" class="page-section">
+                    <div class="countdown-wrapper">
+                    <h2 class="countdown-title">Registration Closes In...</h2>
+                    <div class="timer-container">
+                        <div class="time-box">
+                            <span class="days">00</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="hours">00</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="minutes">00</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="seconds">00</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="welcome-title">Bookmarks</h1>
+                <div id="bookmarks-empty" class="bookmarks-empty">
+                    <i class='bx bx-star'></i>
+                    <p>Hmm... Masih kosong...</p>
+                    <p class="bookmarks-empty-hint">Kunjungi laman "Kompetisi" dan ketuk ikon bintang di kompetisi
+                        apapun untuk menandainya!</p>
+                </div>
+                <div id="bookmarks-list" class="card-grid"></div>
+            </div>
+
+            <div id="social-media-page" class="page-section">
+                    <div class="countdown-wrapper">
+                    <h2 class="countdown-title">Registration Closes In...</h2>
+                    <div class="timer-container">
+                        <div class="time-box">
+                            <span class="days">00</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="hours">00</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="minutes">00</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="time-box">
+                            <span class="seconds">00</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="welcome-title">Social Media</h1>
+                <div class="page-text">Ikuti kami di media sosial untuk mendapatkan informasi terbaru tentang Bazkom
+                    Carasel Seranova 2026!</div>
+
+                <div class="card-grid">
+                    <a href="https://www.instagram.com/bazkomcarasel.68" target="_blank" class="info-card social-card"
+                        style="text-decoration: none; color: white;">
+                        <img src="assets/InstagramIcon.png" alt="Instagram" class="page-title-image">
+                        <h2 class="social-name">Instagram</h2>
+                        <p class="social-handle">@bazkomcarasel.68</p>
+                    </a>
+                    <a href="https://www.tiktok.com/@bazkomcarasel68" target="_blank" class="info-card social-card"
+                        style="text-decoration: none; color: white;">
+                        <img src="assets/TiktokIcon.png" alt="TikTok" class="page-title-image">
+                        <h2 class="social-name">TikTok</h2>
+                        <p class="social-handle">@bazkomcarasel68</p>
+                    </a>
+                    <a href="https://x.com/@bazkomcarasel68" target="_blank" class="info-card social-card"
+                        style="text-decoration: none; color: white;">
+                        <img src="assets/XIcon.png" alt="Twitter" class="page-title-image">
+                        <h2 class="social-name">X</h2>
+                        <p class="social-handle">@bazkomcarasel68</p>
+                    </a>
+                    <a href="https://www.youtube.com/@BAZKOMCARASEL" target="_blank" class="info-card social-card"
+                        style="text-decoration: none; color: white;">
+                        <img src="assets/YoutubeIcon.png" alt="YouTube" class="page-title-image">
+                        <h2 class="social-name">YouTube</h2>
+                        <p class="social-handle">@bazkomcarasel68</p>
+                    </a>
+                </div>
+
+                <div class="video-section">
+                    <h2 class="video-section-title">Short Film</h2>
+                    <video width="100%" controls
+                        style="border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.3);">
+                        <source src="assets/SeranovaTeaser.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
